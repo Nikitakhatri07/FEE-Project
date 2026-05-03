@@ -3,5 +3,5 @@ Welcome to Pups &amp; Cups, where every sip comes with a wag! 🐾☕ Our pet-fr
 
 
 ## 🚀 Live Preview
-[View Live Demo](https://nikitakhatri07.github.io/Pups-and-Cups/)
+[View Live Demo](https://nikitakhatri07.github.io/Pups-and-Cups/index2.html)
 
