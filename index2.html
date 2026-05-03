@@ -182,59 +182,763 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="contact-inner">
-    <div class="contact-text">
-      <span class="section-label light">Find Us</span>
-      <h2>Come Say Hello 🐾</h2>
-      <p>We'd love to meet you and your furry companion.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Us — Pups & Cups</title>
+<link rel="stylesheet" href="style2.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+ 
+/* ═══════════════════════════════════════════
+   ROOT & THEMING
+═══════════════════════════════════════════ */
+:root {
+  --c-bg:      #faf6f1;
+  --c-surface: #ffffff;
+  --c-warm:    #f3ebe0;
+  --c-border:  rgba(139,100,60,0.12);
+  --c-brown:   #3d2410;
+  --c-mid:     #7a5230;
+  --c-muted:   #a07850;
+  --c-accent:  #b8622a;
+  --c-accent2: #d4895a;
+  --c-gold:    #c9924a;
+  --c-green:   #4a6741;
+  --shadow-sm: 0 2px 12px rgba(61,36,16,.07);
+  --shadow-md: 0 6px 28px rgba(61,36,16,.10);
+  --shadow-lg: 0 16px 56px rgba(61,36,16,.13);
+  --radius:    16px;
+  --radius-sm: 10px;
+  --glass-bg:  rgba(255,255,255,0.62);
+  --glass-blur:blur(18px);
+  --t: 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+ 
+body.pet-mode {
+  --c-bg:      #faf0f5;
+  --c-surface: #fff8fb;
+  --c-warm:    #f5e4ef;
+  --c-accent:  #a0436e;
+  --c-accent2: #c4728e;
+  --c-gold:    #b8729a;
+}
+ 
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--c-bg);
+  color:var(--c-brown);
+  transition:background var(--t),color var(--t);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+ 
+/* ═══════════════ NAVBAR ═══════════════ */
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.8rem;height:68px;
+  background:rgba(250,246,241,0.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--c-border);
+  position:sticky;top:0;z-index:200;
+  transition:background var(--t),border-color var(--t);
+}
+body.pet-mode .navbar{background:rgba(250,240,245,0.88);}
+.logo-area{display:flex;align-items:center;gap:.65rem;}
+.logo{height:38px;border-radius:50%;object-fit:cover;}
+.cafe-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;
+  color:var(--c-brown);letter-spacing:.02em;transition:color var(--t);
+}
+.and-sign{color:var(--c-accent);transition:color var(--t);}
+.nav-links{list-style:none;display:flex;gap:2.2rem;}
+.nav-links a{
+  text-decoration:none;font-size:.82rem;font-weight:500;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--c-muted);
+  transition:color .3s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;
+  background:var(--c-accent);transition:width .3s;
+}
+.nav-links a:hover::after,.nav-links .visit-link::after{width:100%;}
+.nav-links a:hover,.nav-links .visit-link{color:var(--c-accent);}
+.menu-icon{display:none;font-size:1.4rem;cursor:pointer;color:var(--c-mid);}
+.cart-box{
+  display:flex;align-items:center;gap:.4rem;
+  padding:.35rem 1rem;background:var(--c-warm);border-radius:30px;
+  font-size:.82rem;font-weight:500;color:var(--c-mid);
+  border:1px solid var(--c-border);
+  transition:background var(--t),border-color var(--t);
+}
+ 
+/* ═══════════════ MODE STRIP ═══════════════ */
+.mode-strip{
+  display:flex;align-items:center;justify-content:center;gap:1.1rem;
+  padding:.55rem 2rem;
+  background:var(--c-warm);
+  border-bottom:1px solid var(--c-border);
+  transition:background var(--t);
+}
+.mode-label{
+  font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--c-muted);transition:color .35s;user-select:none;
+}
+.mode-label.on{color:var(--c-accent);}
+.toggle-pill{
+  width:50px;height:25px;background:rgba(139,100,60,.18);
+  border:1.5px solid rgba(139,100,60,.18);border-radius:13px;
+  position:relative;cursor:pointer;
+  transition:background .4s,border-color .4s;flex-shrink:0;outline:none;
+}
+.toggle-pill.active{background:var(--c-accent);border-color:var(--c-accent);}
+.toggle-knob{
+  position:absolute;top:2px;left:2px;width:17px;height:17px;
+  background:#fff;border-radius:50%;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 1px 4px rgba(0,0,0,.18);
+}
+.toggle-pill.active .toggle-knob{transform:translateX(25px);}
+ 
+/* ═══════════════ LAYOUT ═══════════════ */
+.page{
+  max-width:1060px;margin:0 auto;
+  padding:3.5rem 2rem 5rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;
+}
+ 
+/* ═══════════════ HERO ═══════════════ */
+.page-hero{grid-column:1/-1;text-align:center;margin-bottom:.8rem;}
+.eyebrow{
+  display:inline-block;font-size:.68rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--c-accent);
+  margin-bottom:.9rem;padding:.28rem .95rem;
+  border:1px solid rgba(184,98,42,.22);border-radius:30px;
+  background:rgba(184,98,42,.05);
+  transition:color var(--t),border-color var(--t),background var(--t);
+}
+.page-hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,5vw,3.2rem);font-weight:600;
+  color:var(--c-brown);line-height:1.15;letter-spacing:-.01em;
+  transition:color var(--t);
+}
+.page-hero p{
+  margin-top:.65rem;font-size:.92rem;color:var(--c-muted);font-weight:300;
+  transition:color var(--t);
+}
+ 
+/* ═══════════════ GLASS CARD ═══════════════ */
+.card{
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid rgba(255,255,255,.7);border-radius:var(--radius);
+  padding:2rem;box-shadow:var(--shadow-md);
+  transition:background var(--t),border-color var(--t),box-shadow .35s;
+}
+.card:hover{box-shadow:var(--shadow-lg);}
+.card-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;
+  color:var(--c-brown);margin-bottom:1.4rem;letter-spacing:.01em;
+  transition:color var(--t);
+}
+ 
+/* ═══════════════ FORM FIELDS ═══════════════ */
+.field{display:flex;flex-direction:column;gap:.38rem;margin-bottom:.95rem;}
+.field:last-of-type{margin-bottom:0;}
+.field label{
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--c-muted);transition:color var(--t);
+}
+.field input,.field select{
+  background:rgba(255,255,255,.75);border:1.5px solid var(--c-border);
+  border-radius:var(--radius-sm);padding:.62rem .92rem;
+  font-family:'Jost',sans-serif;font-size:.88rem;font-weight:400;color:var(--c-brown);
+  outline:none;width:100%;
+  transition:border-color .3s,box-shadow .3s,background .3s;
+}
+.field input::placeholder{color:var(--c-muted);opacity:.55;}
+.field input:focus,.field select:focus{
+  border-color:var(--c-accent);box-shadow:0 0 0 3px rgba(184,98,42,.1);background:#fff;
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+ 
+/* Seat pills */
+.seat-row{display:flex;gap:.5rem;flex-wrap:wrap;}
+.seat-pill{
+  padding:.4rem .9rem;border-radius:30px;
+  border:1.5px solid var(--c-border);background:rgba(255,255,255,.55);
+  font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;
+  color:var(--c-mid);cursor:pointer;user-select:none;letter-spacing:.03em;
+  transition:all .28s cubic-bezier(.22,1,.36,1);
+}
+.seat-pill:hover{border-color:var(--c-accent2);color:var(--c-accent);background:rgba(184,98,42,.04);}
+.seat-pill.sel{
+  background:var(--c-accent);border-color:var(--c-accent);color:#fff;font-weight:600;
+  box-shadow:0 3px 12px rgba(184,98,42,.28);
+}
+ 
+/* Birthday row */
+.bday-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.1rem;margin:1rem 0;
+  background:rgba(255,255,255,.5);
+  border:1.5px dashed rgba(184,98,42,.22);border-radius:var(--radius-sm);
+  cursor:pointer;transition:background .3s,border-color .3s;
+}
+.bday-toggle:hover{background:rgba(184,98,42,.04);border-color:var(--c-accent2);}
+.bday-toggle.on{background:rgba(184,98,42,.06);border-color:var(--c-accent);border-style:solid;}
+.bday-left{display:flex;align-items:center;gap:.75rem;}
+.bday-icon{font-size:1.05rem;line-height:1;}
+.bday-text{font-size:.86rem;font-weight:500;color:var(--c-brown);transition:color var(--t);}
+.bday-sub{font-size:.71rem;color:var(--c-muted);margin-top:.1rem;transition:color var(--t);}
+.bday-check-box{
+  width:21px;height:21px;border-radius:6px;
+  border:1.5px solid var(--c-border);background:#fff;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:0;color:#fff;
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+}
+.bday-toggle.on .bday-check-box{background:var(--c-accent);border-color:var(--c-accent);font-size:11px;}
+ 
+/* Book button */
+.book-btn{
+  width:100%;margin-top:.5rem;padding:1rem;
+  background:linear-gradient(135deg,var(--c-accent) 0%,var(--c-accent2) 100%);
+  border:none;border-radius:50px;color:#fff;
+  font-family:'Jost',sans-serif;font-size:.82rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .35s;
+  box-shadow:0 4px 20px rgba(184,98,42,.32);
+}
+.book-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.14) 0%,transparent 60%);
+  pointer-events:none;
+}
+.book-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(184,98,42,.4);}
+.book-btn:active{transform:scale(.98);}
+.btn-ripple{
+  position:absolute;border-radius:50%;background:rgba(255,255,255,.28);
+  transform:scale(0);animation:rpl .55s linear;pointer-events:none;
+}
+@keyframes rpl{to{transform:scale(4);opacity:0;}}
+ 
+/* ═══════════════ INFO CARD ═══════════════ */
+.info-card{grid-column:2/3;}
+.info-item{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1rem 0;border-bottom:1px solid var(--c-border);
+  transition:padding-left .3s;
+}
+.info-item:last-child{border-bottom:none;padding-bottom:0;}
+.info-item:first-child{padding-top:0;}
+.info-item:hover{padding-left:4px;}
+.info-icon{
+  width:36px;height:36px;background:var(--c-warm);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:.95rem;
+  transition:background var(--t),transform .3s;
+}
+.info-item:hover .info-icon{background:var(--c-accent);transform:scale(1.06);}
+.info-label{
+  font-size:.67rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.11em;color:var(--c-muted);margin-bottom:.2rem;
+  transition:color var(--t);
+}
+.info-val{font-size:.9rem;color:var(--c-brown);transition:color var(--t);}
+.yappy{display:none;font-size:.75rem;font-weight:600;color:var(--c-accent);margin-top:.25rem;transition:color var(--t);}
+body.pet-mode .yappy{display:block;}
+body.pet-mode .hours-val{opacity:.4;text-decoration:line-through;}
+ 
+/* ═══════════════ MAP CARD ═══════════════ */
+.map-card{grid-column:1/-1;}
+.map-wrap{
+  width:100%;height:210px;border-radius:var(--radius-sm);
+  background:linear-gradient(145deg,#e8dcc8 0%,#d8c8a8 50%,#cdb898 100%);
+  position:relative;overflow:hidden;
+}
+.map-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,transparent 45%,rgba(255,255,255,.5) 45%,rgba(255,255,255,.5) 55%,transparent 55%),
+    linear-gradient(0deg,transparent 35%,rgba(255,255,255,.5) 35%,rgba(255,255,255,.5) 45%,transparent 45%);
+}
+.map-block{position:absolute;background:rgba(107,70,30,.1);border-radius:3px;}
+.map-pin-wrap{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-60%);
+  display:flex;flex-direction:column;align-items:center;
+  animation:float 3.5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translate(-50%,-60%);}50%{transform:translate(-50%,-68%);}}
+.map-bubble{
+  background:var(--c-accent);color:#fff;
+  padding:.48rem 1.1rem;border-radius:24px;
+  font-size:.8rem;font-weight:600;white-space:nowrap;
+  box-shadow:0 4px 18px rgba(184,98,42,.38);letter-spacing:.03em;
+  display:flex;align-items:center;gap:.45rem;
+  transition:background var(--t);
+}
+.map-bubble-tail{
+  width:0;height:0;
+  border-left:7px solid transparent;border-right:7px solid transparent;
+  border-top:9px solid var(--c-accent);
+  transition:border-color var(--t);
+}
+ 
+/* ═══════════════ MESSAGE FORM ═══════════════ */
+.msg-card{grid-column:1/-1;}
+.msg-card textarea{
+  background:rgba(255,255,255,.75);border:1.5px solid var(--c-border);
+  border-radius:var(--radius-sm);padding:.68rem .92rem;
+  font-family:'Jost',sans-serif;font-size:.88rem;font-weight:400;color:var(--c-brown);
+  outline:none;resize:vertical;min-height:100px;width:100%;
+  transition:border-color .3s,box-shadow .3s;
+}
+.msg-card textarea:focus{border-color:var(--c-accent);box-shadow:0 0 0 3px rgba(184,98,42,.1);}
+.msg-card textarea::placeholder{color:var(--c-muted);opacity:.5;}
+.msg-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1rem;}
+.send-btn{
+  padding:.72rem 2.2rem;background:var(--c-brown);color:#fff;
+  border:none;border-radius:30px;
+  font-family:'Jost',sans-serif;font-size:.8rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  transition:background .3s,transform .25s,box-shadow .3s;
+  box-shadow:0 3px 14px rgba(61,36,16,.18);
+}
+.send-btn:hover{background:var(--c-accent);transform:translateY(-2px);box-shadow:0 6px 22px rgba(184,98,42,.28);}
+.send-btn:active{transform:scale(.97);}
+#status{font-size:.82rem;color:var(--c-green);margin-top:.6rem;min-height:1.2em;transition:color .3s;}
+ 
+/* ═══════════════ MODAL ═══════════════ */
+.modal-backdrop{
+  position:fixed;inset:0;z-index:900;
+  background:rgba(61,36,16,.3);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
+.modal-backdrop.show{opacity:1;pointer-events:all;}
+.modal-card{
+  background:var(--c-surface);border-radius:24px;
+  padding:3rem 3.2rem;text-align:center;max-width:380px;width:90%;
+  box-shadow:0 24px 80px rgba(61,36,16,.22);
+  transform:translateY(20px) scale(.95);
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+.modal-backdrop.show .modal-card{transform:translateY(0) scale(1);}
+.modal-emoji{font-size:3rem;display:block;margin-bottom:1.1rem;animation:bob 2.5s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.modal-card h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--c-brown);margin-bottom:.5rem;line-height:1.2;}
+.modal-card p{font-size:.87rem;color:var(--c-muted);line-height:1.6;}
+.modal-close{
+  margin-top:1.8rem;padding:.68rem 2.2rem;background:var(--c-accent);color:#fff;
+  border:none;border-radius:30px;
+  font-family:'Jost',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:background .3s,transform .25s;
+}
+.modal-close:hover{background:var(--c-brown);transform:translateY(-2px);}
+ 
+/* ═══════════════ CONFETTI ═══════════════ */
+#confetti-canvas{position:fixed;inset:0;z-index:9999;pointer-events:none;}
+ 
+/* ═══════════════ FOOTER ═══════════════ */
+footer{
+  text-align:center;padding:1.8rem 2rem;
+  border-top:1px solid var(--c-border);background:var(--c-warm);
+  transition:background var(--t);
+}
+footer .cafe-name.small{
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;
+  display:block;margin-bottom:.3rem;color:var(--c-brown);transition:color var(--t);
+}
+footer p{font-size:.78rem;color:var(--c-muted);transition:color var(--t);}
+ 
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media(max-width:700px){
+  .page{grid-template-columns:1fr;}
+  .booking-card,.info-card,.page-hero,.map-card,.msg-card{grid-column:1;}
+  .grid2,.msg-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}.menu-icon{display:block;}
+  .navbar{padding:0 1.4rem;}
+  .page{padding:2rem 1.2rem 4rem;}
+}
+</style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<header>
+  <nav class="navbar">
+    <div class="logo-area">
+      <img src="images/logo.png" class="logo" alt="Pups & Cups Logo">
+      <span class="cafe-name">Pups <span class="and-sign">&</span> Cups</span>
     </div>
-
-    <div class="contact-details">
-      <div class="contact-item">
-        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+    <ul class="nav-links">
+      <li><a href="index2.html">Home</a></li>
+      <li><a href="about2.html">About</a></li>
+      <li><a href="menu2.html">Menu</a></li>
+      <li><a href="contact2.html" class="visit-link">Visit Us</a></li>
+    </ul>
+    <div class="menu-icon">☰</div>
+    <div class="cart-box">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span id="cart-count">0</span> · <span id="cart-total">₹0</span>
+    </div>
+  </nav>
+</header>
+ 
+<!-- MODE STRIP -->
+<div class="mode-strip">
+  <span class="mode-label on" id="lbl-human">Human Mode</span>
+  <button class="toggle-pill" id="modeToggle" aria-label="Switch mode">
+    <span class="toggle-knob"></span>
+  </button>
+  <span class="mode-label" id="lbl-pet">Pet Mode</span>
+</div>
+ 
+<!-- PAGE -->
+<main class="page">
+ 
+  <!-- Hero -->
+  <div class="page-hero">
+    <span class="eyebrow" id="eyebrow-text">Visit Us</span>
+    <h1 id="hero-heading">Come Say Hello</h1>
+    <p id="hero-sub">We'd love to meet you and your furry companion — reservations welcome.</p>
+  </div>
+ 
+  <!-- Reservation Card -->
+  <div class="card booking-card">
+    <p class="card-title">Reserve a Table</p>
+ 
+    <div class="grid2">
+      <div class="field">
+        <label>Your Name</label>
+        <input type="text" id="res-name" placeholder="e.g. Avni">
+      </div>
+      <div class="field">
+        <label>Date &amp; Time</label>
+        <input type="datetime-local" id="res-datetime">
+      </div>
+    </div>
+ 
+    <div class="grid2">
+      <div class="field">
+        <label>Pet's Name</label>
+        <input type="text" id="pet-name" placeholder="e.g. Bruno">
+      </div>
+      <div class="field">
+        <label>Breed</label>
+        <input type="text" id="pet-breed" placeholder="e.g. Golden Retriever">
+      </div>
+    </div>
+ 
+    <div class="field">
+      <label>Seating Preference</label>
+      <div class="seat-row" id="seatRow">
+        <button class="seat-pill" data-seat="outdoor">Outdoor Patio</button>
+        <button class="seat-pill" data-seat="quiet">Quiet Corner</button>
+        <button class="seat-pill" data-seat="window">Window Seat</button>
+      </div>
+    </div>
+ 
+    <div class="bday-toggle" id="bdayToggle">
+      <div class="bday-left">
+        <span class="bday-icon">🎂</span>
         <div>
-          <strong>Location</strong>
-          <span>123 Paw Street, Banur</span>
+          <div class="bday-text">It's my pet's birthday!</div>
+          <div class="bday-sub">We'll make it extra special</div>
         </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-        <div>
-          <strong>Phone</strong>
-          <span>+91 98765 43210</span>
-        </div>
+      <div class="bday-check-box" id="bdayBox">✓</div>
+    </div>
+ 
+    <button class="book-btn" id="bookBtn">
+      <span id="bookBtnText">Confirm Reservation</span>
+    </button>
+  </div>
+ 
+  <!-- Info Card -->
+  <div class="card info-card">
+    <p class="card-title" id="info-title">Find Us</p>
+ 
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>
+        <div class="info-label">Location</div>
+        <div class="info-val">Oxford Street, Mohali</div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-        <div>
-          <strong>Email</strong>
-          <span>hello@pupsandcups.com</span>
-        </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div>
+        <div class="info-label">Phone</div>
+        <div class="info-val">+91 98*****210</div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon"><i class="fas fa-clock"></i></div>
-        <div>
-          <strong>Hours</strong>
-          <span>10:00 AM – 10:00 PM · Daily</span>
-        </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">✉️</div>
+      <div>
+        <div class="info-label">Email</div>
+        <div class="info-val">pupsandcups@woof.com</div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕙</div>
+      <div>
+        <div class="info-label">Hours</div>
+        <div class="info-val hours-val" id="hoursVal">10:00 AM – 10:00 PM · Daily</div>
+        <div class="yappy">All day is Yappy Hour here 🐾</div>
       </div>
     </div>
   </div>
-</section>
-
+ 
+  <!-- Map Card -->
+  <div class="card map-card">
+    <p class="card-title" id="map-title">Our Location</p>
+    <div class="map-wrap">
+      <div class="map-block" style="width:85px;height:50px;top:18px;left:55px;"></div>
+      <div class="map-block" style="width:60px;height:38px;top:18px;right:70px;"></div>
+      <div class="map-block" style="width:70px;height:45px;bottom:22px;left:72px;"></div>
+      <div class="map-block" style="width:80px;height:42px;bottom:22px;right:55px;"></div>
+      <div class="map-block" style="width:40px;height:30px;top:22px;left:175px;"></div>
+      <div class="map-pin-wrap">
+        <div class="map-bubble">
+          <span id="mapPinIcon">☕</span>
+          <span>Pups &amp; Cups · Banur</span>
+        </div>
+        <div class="map-bubble-tail"></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Message Form -->
+  <div class="card msg-card">
+    <p class="card-title">Send Us a Message</p>
+    <div class="msg-grid">
+      <div class="field">
+        <label>Your Name</label>
+        <input type="text" id="name" placeholder="Your Name">
+      </div>
+      <div class="field">
+        <label>Your Email</label>
+        <input type="email" id="email" placeholder="Your Email">
+      </div>
+    </div>
+    <div class="field">
+      <label>Message</label>
+      <textarea id="message" placeholder="Ask us anything — about the menu, bringing your pet, or just to say hi."></textarea>
+    </div>
+    <button class="send-btn" id="sendBtn">Send Message</button>
+    <p id="status"></p>
+  </div>
+ 
+</main>
+ 
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-card">
+    <span class="modal-emoji" id="modalEmoji">🐾</span>
+    <h3 id="modalTitle">Table Reserved!</h3>
+    <p id="modalMsg">We're looking forward to welcoming you and your furry friend.</p>
+    <button class="modal-close" onclick="closeModal()">Perfect, thank you</button>
+  </div>
+</div>
+ 
+<canvas id="confetti-canvas"></canvas>
+ 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <span class="brand-name small">Pups <span class="brand-amp">&</span> Cups</span>
-    <p>© 2026 Pups & Cups · Made with 🐾 & ☕ in Banur</p>
-    <div class="footer-socials">
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    </div>
-  </div>
+  <span class="cafe-name small">Pups <span class="and-sign">&</span> Cups</span>
+  <p>© 2026 Pups &amp; Cups · Banur, Punjab</p>
 </footer>
+ 
+<script src="script.js"></script>
+<script>
+/* ── Mode Toggle ── */
+const toggle = document.getElementById('modeToggle');
+const lblH   = document.getElementById('lbl-human');
+const lblP   = document.getElementById('lbl-pet');
+let petMode  = false;
+ 
+const swapMap = {
+  'eyebrow-text': ['Visit Us',           'Sniff Us Out'],
+  'hero-heading': ['Come Say Hello',     'Wag Your Way Here'],
+  'hero-sub':     ['We\'d love to meet you and your furry companion — reservations welcome.',
+                   'Treats, belly rubs & great coffee — reservations welcome.'],
+  'info-title':   ['Find Us',            'Paw Your Way To Us'],
+  'map-title':    ['Our Location',       'Follow the Paw Prints'],
+  'mapPinIcon':   ['☕',                 '🐾'],
+  'bookBtnText':  ['Confirm Reservation','Secure My Spot'],
+};
+ 
+toggle.addEventListener('click', () => {
+  petMode = !petMode;
+  toggle.classList.toggle('active', petMode);
+  document.body.classList.toggle('pet-mode', petMode);
+  lblH.classList.toggle('on', !petMode);
+  lblP.classList.toggle('on', petMode);
+ 
+  Object.entries(swapMap).forEach(([id, vals]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.transition = 'opacity .25s';
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.textContent = vals[petMode ? 1 : 0];
+      el.style.opacity = '1';
+    }, 250);
+  });
+});
+ 
+/* ── Seat Pills ── */
+document.querySelectorAll('.seat-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.seat-pill').forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+  });
+});
+ 
+/* ── Birthday Toggle ── */
+const bdayToggle = document.getElementById('bdayToggle');
+let isBday = false;
+bdayToggle.addEventListener('click', () => {
+  isBday = !isBday;
+  bdayToggle.classList.toggle('on', isBday);
+  if (isBday) launchConfetti();
+});
+ 
+/* ── Book Button ── */
+document.getElementById('bookBtn').addEventListener('click', function(e) {
+  // ripple
+  const btn  = this;
+  const r    = document.createElement('span');
+  r.className = 'btn-ripple';
+  const rect = btn.getBoundingClientRect();
+  const sz   = Math.max(rect.width, rect.height) * 2;
+  r.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
+  btn.appendChild(r);
+  setTimeout(() => r.remove(), 560);
+ 
+  const pet = document.getElementById('pet-name').value.trim() || 'your furry friend';
+  document.getElementById('modalEmoji').textContent = isBday ? '🎂' : '🐾';
+  document.getElementById('modalTitle').textContent = isBday
+    ? `Happy Birthday, ${pet}!`
+    : 'Table Reserved!';
+  document.getElementById('modalMsg').textContent = isBday
+    ? `We're preparing something special for ${pet}. Can't wait to celebrate!`
+    : `We can't wait to meet ${pet}. See you soon!`;
+ 
+  document.getElementById('modalBackdrop').classList.add('show');
+  if (isBday) launchConfetti();
+});
+ 
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('show');
+}
+document.getElementById('modalBackdrop').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+ 
+/* ── Send Message ── */
+document.getElementById('sendBtn').addEventListener('click', () => {
+  const name  = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const st    = document.getElementById('status');
+  if (!name || !email) {
+    st.style.color = '#b03030';
+    st.textContent = 'Please fill in your name and email.';
+    return;
+  }
+  st.style.color = 'var(--c-green)';
+  st.textContent = `Thank you, ${name}. We'll be in touch soon.`;
+});
+ 
+/* ── Confetti — elegant, refined ── */
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx    = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+ 
+  // Warm, earthy palette — no childish emojis
+  const palette = [
+    '#b8622a','#d4895a','#c9924a',
+    '#4a6741','#8fbb84',
+    '#e8c97e','#f2e0c8',
+    '#a07850','#7a5230',
+    '#e07070','#f4a0a0',  // subtle pink for birthday
+  ];
+ 
+  const DURATION = 3800;
+  const count    = 140;
+ 
+  const particles = Array.from({ length: count }, () => {
+    const type = Math.random();
+    return {
+      x:    Math.random() * canvas.width,
+      y:    -10 - Math.random() * 120,
+      vx:   (Math.random() - 0.5) * 4,
+      vy:   Math.random() * 3 + 1.5,
+      rot:  Math.random() * 360,
+      rotV: (Math.random() - 0.5) * 5.5,
+      colour: palette[Math.floor(Math.random() * palette.length)],
+      // shape: 0=rect, 1=circle, 2=thin ribbon
+      shape: type < 0.55 ? 0 : type < 0.8 ? 1 : 2,
+      w: Math.random() * 9 + 4,
+      h: Math.random() * 4 + 2,
+      opacity: 0.82 + Math.random() * 0.18,
+    };
+  });
+ 
+  let start = null;
+  function draw(ts) {
+    if (!start) start = ts;
+    const elapsed  = ts - start;
+    const fade     = Math.max(0, 1 - elapsed / DURATION);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
+    particles.forEach(p => {
+      p.x   += p.vx;
+      p.y   += p.vy;
+      p.vy  += 0.035;
+      p.rot += p.rotV;
+ 
+      ctx.save();
+      ctx.globalAlpha = p.opacity * fade;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.fillStyle = p.colour;
+ 
+      if (p.shape === 0) {
+        // rectangle
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      } else if (p.shape === 1) {
+        // circle
+        ctx.beginPath();
+        ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // thin ribbon
+        ctx.fillRect(-p.w, -p.h / 4, p.w * 2, p.h / 2);
+      }
+      ctx.restore();
+    });
+ 
+    if (elapsed < DURATION) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  requestAnimationFrame(draw);
+}
+</script>
+</body>
+</html>
+
 
 </body>
 </html>
