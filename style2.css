@@ -26,14 +26,19 @@
 }
 
 .carousel-track img {
-  height: 320px;
-  width: auto;
-  border-radius: var(--radius); /* Updated to your theme variable */
+  /* Set width to ~30% of viewport so 3 images fit perfectly on screen */
+  width: clamp(280px, 30vw, 400px); 
+  
+  /* Force a wide, landscape shape (16:10 ratio) */
+  aspect-ratio: 16 / 10; 
+  height: auto;
+  
+  border-radius: var(--radius);
   object-fit: cover;
-  box-shadow: var(--shadow-md); /* Updated to your theme variable */
+  box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
   margin-right: 24px;
-  transition: transform var(--transition); /* Updated to your theme variable */
+  transition: transform var(--transition);
 }
 
 .carousel-track img:hover {
