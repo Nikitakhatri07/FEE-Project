@@ -60,6 +60,159 @@
 
 
 
+/* ===== GLOBAL STYLE TOUCH ===== */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* ===== SECTION 1 ===== */
+.dietary-section {
+  display: flex;
+  justify-content: center;
+}
+
+.dietary-card {
+  max-width: 600px;
+  background: linear-gradient(135deg, #ffe6eb, #fff5f7);
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.dietary-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.dietary-icon {
+  font-size: 30px;
+  color: #ff6b81;
+  margin-bottom: 15px;
+}
+
+/* ===== SECTION 2 ===== */
+.experience-section h2 {
+  margin-bottom: 10px;
+}
+
+.experience-subtext {
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature {
+  padding: 25px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+}
+
+.feature i {
+  font-size: 24px;
+  color: #ff6b81;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ===== RESPONSIVE GRID ===== */
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== SECTION 3 ===== */
+.testimonials-section {
+  background: #fff9fb;
+}
+
+.testimonial-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 280px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.05);
+}
+
+.stars {
+  color: #ffb400;
+  margin-bottom: 10px;
+}
+
+.google {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* ===== DOTS ===== */
+.dots {
+  margin: 20px 0;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.active {
+  background: #ff6b81;
+}
+
+/* ===== BUTTON ===== */
+.review-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff6b81, #ff8fa3);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-btn:hover {
+  opacity: 0.9;
+}
+
+
+
+
+
 /* ===========================
    CSS VARIABLES & RESET
 =========================== */
