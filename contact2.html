@@ -12,27 +12,45 @@
    ROOT & THEMING
 ═══════════════════════════════════════════ */
 :root {
-  --c-bg:      #faf6f1;
-  --c-surface: #ffffff;
-  --c-warm:    #f3ebe0;
-  --c-border:  rgba(139,100,60,0.12);
-  --c-brown:   #3d2410;
-  --c-mid:     #7a5230;
-  --c-muted:   #a07850;
-  --c-accent:  #b8622a;
-  --c-accent2: #d4895a;
-  --c-gold:    #c9924a;
-  --c-green:   #4a6741;
-  --shadow-sm: 0 2px 12px rgba(61,36,16,.07);
-  --shadow-md: 0 6px 28px rgba(61,36,16,.10);
-  --shadow-lg: 0 16px 56px rgba(61,36,16,.13);
-  --radius:    16px;
-  --radius-sm: 10px;
-  --glass-bg:  rgba(255,255,255,0.62);
-  --glass-blur:blur(18px);
-  --t: 0.45s cubic-bezier(0.22,1,0.36,1);
+  --c-bg: #fff;
+  --c-surface: #fff;
+  --c-warm: #fff;
+  --c-border: rgba(0,0,0,0.08);
+
+  --c-brown: #222;
+  --c-mid: #555;
+  --c-muted: #777;
+
+  --c-accent: #ff7aa2;   /* pink tone like about page */
+  --c-accent2: #ff9fba;
+
+  --c-gold: #ff7aa2;
+  --c-green: #2e7d32;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-md: 0 6px 20px rgba(0,0,0,.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.12);
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --glass-bg: rgba(255,255,255,0.9);
+  --glass-blur: blur(10px);
+
+  --t: 0.3s ease;
 }
- 
+
+
+body{
+  font-family:'Verdana',sans-serif;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233C2A21' fill-opacity='0.04'%3E%3Cg transform='translate(15, 15) rotate(-15)'%3E%3Cpath d='M25 32 C32 32 36 26 25 25 C14 24 18 32 25 32 Z' /%3E%3Ccircle cx='16' cy='18' r='3.5'/%3E%3Ccircle cx='21' cy='13' r='3.5'/%3E%3Ccircle cx='28' cy='13' r='3.5'/%3E%3Ccircle cx='33' cy='18' r='3.5'/%3E%3C/g%3E%3Cg transform='translate(75, 75) rotate(20)'%3E%3Cpath d='M25 32 C32 32 36 26 25 25 C14 24 18 32 25 32 Z' /%3E%3Ccircle cx='16' cy='18' r='3.5'/%3E%3Ccircle cx='21' cy='13' r='3.5'/%3E%3Ccircle cx='28' cy='13' r='3.5'/%3E%3Ccircle cx='33' cy='18' r='3.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: auto;
+  color:var(--c-brown);
+}
+
+
 body.pet-mode {
   --c-bg:      #faf0f5;
   --c-surface: #fff8fb;
@@ -45,8 +63,8 @@ body.pet-mode {
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Jost',sans-serif;
-  background:var(--c-bg);
+  font-family:'Verdana',sans-serif;
+  background:var !important;
   color:var(--c-brown);
   transition:background var(--t),color var(--t);
   overflow-x:hidden;
@@ -57,7 +75,7 @@ body{
 .navbar{
   display:flex;align-items:center;justify-content:space-between;
   padding:0 2.8rem;height:68px;
-  background:rgba(250,246,241,0.88);
+  background: #fff;
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--c-border);
   position:sticky;top:0;z-index:200;
@@ -96,7 +114,7 @@ body.pet-mode .navbar{background:rgba(250,240,245,0.88);}
 .mode-strip{
   display:flex;align-items:center;justify-content:center;gap:1.1rem;
   padding:.55rem 2rem;
-  background:var(--c-warm);
+  background:#fff;
   border-bottom:1px solid var(--c-border);
   transition:background var(--t);
 }
@@ -150,9 +168,9 @@ body.pet-mode .navbar{background:rgba(250,240,245,0.88);}
  
 /* ═══════════════ GLASS CARD ═══════════════ */
 .card{
-  background:var(--glass-bg);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid rgba(255,255,255,.7);border-radius:var(--radius);
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius);
   padding:2rem;box-shadow:var(--shadow-md);
   transition:background var(--t),border-color var(--t),box-shadow .35s;
 }
@@ -276,7 +294,8 @@ body.pet-mode .hours-val{opacity:.4;text-decoration:line-through;}
 .map-card{grid-column:1/-1;}
 .map-wrap{
   width:100%;height:210px;border-radius:var(--radius-sm);
-  background:linear-gradient(145deg,#e8dcc8 0%,#d8c8a8 50%,#cdb898 100%);
+  background: #f5f5f5;
+
   position:relative;overflow:hidden;
 }
 .map-wrap::before{
@@ -487,7 +506,7 @@ footer p{font-size:.78rem;color:var(--c-muted);transition:color var(--t);}
       <div class="info-icon">📍</div>
       <div>
         <div class="info-label">Location</div>
-        <div class="info-val">Oxford Street, Banur</div>
+        <div class="info-val">Paw Street, Banur</div>
       </div>
     </div>
     <div class="info-item">
